@@ -1,46 +1,47 @@
 import { Avatar, Box, Card, CardContent, Grid, Typography } from "@mui/material";
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
-import PeopleIcon from "@mui/icons-material/PeopleOutlined";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import MoneyIcon from "@mui/icons-material/Money";
 
-export const TotalCustomers = (props) => (
-  <Card {...props}>
+export const Programs = (props) => (
+  <Card sx={{ height: "100%" }} {...props}>
     <CardContent>
       <Grid container spacing={3} sx={{ justifyContent: "space-between" }}>
         <Grid item>
           <Typography color="textSecondary" gutterBottom variant="overline">
-            TOTAL STUDENTS
+            PROGRAMS
           </Typography>
           <Typography color="textPrimary" variant="h4">
-            1,6k
+            $24k
           </Typography>
         </Grid>
         <Grid item>
           <Avatar
             sx={{
-              backgroundColor: "success.main",
+              backgroundColor: "error.main",
               height: 56,
               width: 56,
             }}
           >
-            <PeopleIcon />
+            <MoneyIcon />
           </Avatar>
         </Grid>
       </Grid>
       <Box
         sx={{
-          alignItems: "center",
-          display: "flex",
           pt: 2,
+          display: "flex",
+          alignItems: "center",
         }}
       >
-        <ArrowUpwardIcon color="success" />
+        <ArrowDownwardIcon color="error" />
         <Typography
-          variant="body2"
+          color="error"
           sx={{
             mr: 1,
           }}
+          variant="body2"
         >
-          16%
+          12%
         </Typography>
         <Typography color="textSecondary" variant="caption">
           Since last month
