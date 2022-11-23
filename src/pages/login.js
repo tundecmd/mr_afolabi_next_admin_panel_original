@@ -9,10 +9,12 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Facebook as FacebookIcon } from "../icons/facebook";
 import { Google as GoogleIcon } from "../icons/google";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../slices/authSlice";
+import { login } from "../features/authSlice";
+import { useRouter } from "next/router";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
@@ -27,12 +29,15 @@ const Login = () => {
       console.log(formik.values);
       dispatch(login({ ...formik.values }))
         .unwrap()
-        .then(() => {
-          console.log(formik.values);
-          navigate("/");
-          window.location.reload();
+        .then((data) => {
+          console.log("ddddddd");
+          console.log("data :>> ", data);
+          // navigate("/");
+          router.push("/");
+          // window.location.reload();
         })
         .catch(() => {
+          console.log("ssssss");
           setLoading(false);
         });
       console.log(formik.values);
@@ -54,14 +59,19 @@ const Login = () => {
           minHeight: "100%",
         }}
       >
-        <Container maxWidth="xs">
+        <Container
+          maxWidth="xs"
+          maxHeight="md"
+          pt={10}
+          sx={{ paddingBottom: "10", backgroundColor: "white" }}
+        >
           {/* <NextLink href="/" passHref>
             <Button component="a" startIcon={<ArrowBackIcon fontSize="small" />}>
               Dashboard
             </Button>
           </NextLink> */}
           <form onSubmit={formik.handleSubmit}>
-            <Box sx={{ my: 3 }}>
+            <Box sx={{ my: 3 }} pt={7}>
               <Typography color="textPrimary" variant="h3">
                 Login
               </Typography>
@@ -116,7 +126,7 @@ const Login = () => {
               onChange={formik.handleChange}
               type="email"
               value={formik.values.email}
-              variant="outlined"
+              variant="standard"
             />
             <TextField
               error={Boolean(formik.touched.password && formik.errors.password)}
@@ -129,12 +139,12 @@ const Login = () => {
               onChange={formik.handleChange}
               type="password"
               value={formik.values.password}
-              variant="outlined"
+              variant="standard"
             />
             <Box sx={{ py: 2 }}>
               <Button
                 color="primary"
-                disabled={formik.isSubmitting}
+                // disabled={formik.isSubmitting}
                 fullWidth
                 size="large"
                 type="submit"
@@ -143,7 +153,7 @@ const Login = () => {
                 Sign In Now
               </Button>
             </Box>
-            <Typography color="textSecondary" variant="body2">
+            <Typography color="textSecondary" variant="body2" pb={10}>
               Don&apos;t have an account?{" "}
               <NextLink href="/register">
                 <Link

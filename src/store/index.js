@@ -1,11 +1,13 @@
-import { configureStore } from "@reduxjs/toolkit";
-import authReducer from "../slices/authSlice";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import authReducer from "../features/authSlice";
+import programReducer from "../features/programSlice";
 // import messageReducer from "./slices/message";
 
-const reducer = {
+const reducer = combineReducers({
   auth: authReducer,
+  program: programReducer,
   //   message: messageReducer,
-};
+});
 
 const store = configureStore({
   reducer: reducer,

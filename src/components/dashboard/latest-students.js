@@ -16,6 +16,7 @@ import {
 } from "@mui/material";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import { SeverityPill } from "../severity-pill";
+import Link from "next/link";
 
 const orders = [
   {
@@ -26,7 +27,7 @@ const orders = [
       name: "Ekaterina Tankova",
     },
     createdAt: 1555016400000,
-    status: "pending",
+    status: "beginner",
   },
   {
     id: uuid(),
@@ -36,7 +37,7 @@ const orders = [
       name: "Cao Yu",
     },
     createdAt: 1555016400000,
-    status: "delivered",
+    status: "intermediate",
   },
   {
     id: uuid(),
@@ -46,7 +47,7 @@ const orders = [
       name: "Alexa Richardson",
     },
     createdAt: 1554930000000,
-    status: "refunded",
+    status: "advanced",
   },
   {
     id: uuid(),
@@ -56,7 +57,7 @@ const orders = [
       name: "Anje Keizer",
     },
     createdAt: 1554757200000,
-    status: "pending",
+    status: "beginner",
   },
   {
     id: uuid(),
@@ -66,7 +67,7 @@ const orders = [
       name: "Clarke Gillebert",
     },
     createdAt: 1554670800000,
-    status: "delivered",
+    status: "advanced",
   },
   {
     id: uuid(),
@@ -76,11 +77,11 @@ const orders = [
       name: "Adam Denisov",
     },
     createdAt: 1554670800000,
-    status: "delivered",
+    status: "intermediate",
   },
 ];
 
-export const LatestOrders = (props) => (
+export const LatestStudents = (props) => (
   <Card {...props}>
     <CardHeader title="New Students" />
     <PerfectScrollbar>
@@ -88,16 +89,16 @@ export const LatestOrders = (props) => (
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Order Ref</TableCell>
-              <TableCell>Customer</TableCell>
+              <TableCell>Id</TableCell>
+              <TableCell>Student</TableCell>
               <TableCell sortDirection="desc">
                 <Tooltip enterDelay={300} title="Sort">
                   <TableSortLabel active direction="desc">
-                    Date
+                    Join Date
                   </TableSortLabel>
                 </Tooltip>
               </TableCell>
-              <TableCell>Status</TableCell>
+              <TableCell>Level</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -109,8 +110,8 @@ export const LatestOrders = (props) => (
                 <TableCell>
                   <SeverityPill
                     color={
-                      (order.status === "delivered" && "success") ||
-                      (order.status === "refunded" && "error") ||
+                      (order.status === "advanced" && "success") ||
+                      (order.status === "beginner" && "error") ||
                       "warning"
                     }
                   >
@@ -130,14 +131,16 @@ export const LatestOrders = (props) => (
         p: 2,
       }}
     >
-      <Button
-        color="primary"
-        endIcon={<ArrowRightIcon fontSize="small" />}
-        size="small"
-        variant="text"
-      >
-        View all
-      </Button>
+      <Link href="/students">
+        <Button
+          color="primary"
+          endIcon={<ArrowRightIcon fontSize="small" />}
+          size="small"
+          variant="text"
+        >
+          View all
+        </Button>
+      </Link>
     </Box>
   </Card>
 );

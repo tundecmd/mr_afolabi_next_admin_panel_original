@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import Link from "next/link";
 
 const products = [
   {
@@ -83,9 +84,11 @@ export const LatestPrograms = (props) => (
         p: 2,
       }}
     >
-      <Button color="primary" endIcon={<ArrowRightIcon />} size="small" variant="text">
-        View all
-      </Button>
+      <Link href="/programs">
+        <Button color="primary" endIcon={<ArrowRightIcon />} size="small" variant="text">
+          View all
+        </Button>
+      </Link>
     </Box>
   </Card>
 );
