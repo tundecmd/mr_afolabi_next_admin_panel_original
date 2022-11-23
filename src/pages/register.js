@@ -59,9 +59,9 @@ const Register = () => {
           <form onSubmit={formik.handleSubmit}>
             <Box sx={{ my: 3 }} pt={7}>
               <Typography color="textPrimary" variant="h4">
-                Create a new account
+                Register
               </Typography>
-              <Typography color="textSecondary" gutterBottom variant="body2">
+              <Typography color="textSecondary" gutterBottom variant="body2" mt={5}>
                 Use your email to create a new account
               </Typography>
             </Box>

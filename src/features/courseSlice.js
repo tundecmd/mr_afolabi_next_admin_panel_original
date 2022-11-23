@@ -1,13 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import authService from "../services/auth";
-import ProgramService from "../services/programService";
+// import authService from "../services/auth";
+import CourseService from "../services/courseService";
 // import axiosInstance from "../utils/axios";
 
-export const getPrograms = createAsyncThunk("/programs", async (thunkAPI) => {
+export const getCourses = createAsyncThunk("/courses", async (thunkAPI) => {
   try {
-    const data = await ProgramService.getPrograms();
-    const { programs } = data;
-    return { programs };
+    const data = await CourseService.getCourses();
+    const { courses } = data;
+    return { courses };
   } catch (error) {
     const message =
       (error.response && error.response.data && error.response.data.message) ||
@@ -18,9 +18,9 @@ export const getPrograms = createAsyncThunk("/programs", async (thunkAPI) => {
   }
 });
 
-export const addProgram = createAsyncThunk("/programs", async ({ ...newProgram }, thunkAPI) => {
+export const addCourse = createAsyncThunk("/courses", async ({ ...newCourse }, thunkAPI) => {
   try {
-    const res = await ProgramService.addProgram(newProgram);
+    const res = await CourseService.addCourse(newCourse);
     return res;
   } catch (error) {
     const message =
@@ -32,9 +32,9 @@ export const addProgram = createAsyncThunk("/programs", async ({ ...newProgram }
   }
 });
 
-export const editProgram = createAsyncThunk("/programs", async ({ ...program }, thunkAPI) => {
+export const editCourse = createAsyncThunk("/courses", async ({ ...course }, thunkAPI) => {
   try {
-    const res = await ProgramService.editProgram(program);
+    const res = await CourseService.editCourse(course);
     return res;
   } catch (error) {
     const message =
@@ -46,9 +46,9 @@ export const editProgram = createAsyncThunk("/programs", async ({ ...program }, 
   }
 });
 
-export const deleteProgram = createAsyncThunk("/programs", async (_id, thunkAPI) => {
+export const deleteCourse = createAsyncThunk("/courses", async (_id, thunkAPI) => {
   try {
-    const res = await ProgramService.deleteProgram(_id);
+    const res = await CourseService.deleteCourse(_id);
     return res;
   } catch (error) {
     const message =
@@ -62,12 +62,12 @@ export const deleteProgram = createAsyncThunk("/programs", async (_id, thunkAPI)
 
 // const initialState = user ? { isLoggedIn: true, user } : { isLoggedIn: false, user: null };
 const initialState = {
-  programs: [],
+  courses: [],
   success: false,
 };
 
-const programSlice = createSlice({
-  name: "program",
+const courseSlice = createSlice({
+  name: "course",
   initialState,
   extraReducers: {
     // [register.fulfilled]: (state, action) => {
@@ -76,14 +76,14 @@ const programSlice = createSlice({
     // [register.rejected]: (state, action) => {
     //   state.isLoggedIn = false;
     // },
-    [getPrograms.fulfilled]: (state, action) => {
-      state.programs = action.payload.programs;
+    [getCourses.fulfilled]: (state, action) => {
+      state.courses = action.payload.courses;
     },
-    [getPrograms.rejected]: (state, action) => {
+    [getCourses.rejected]: (state, action) => {
       state.isLoggedIn = false;
       state.user = null;
     },
-    // [deleteProgram.fulfilled]: (state, action) => {
+    // [deleteCourse.fulfilled]: (state, action) => {
     //   state = [...state];
     // },
     // [logout.fulfilled]: (state, action) => {
@@ -93,5 +93,5 @@ const programSlice = createSlice({
   },
 });
 
-const { reducer } = programSlice;
+const { reducer } = courseSlice;
 export default reducer;

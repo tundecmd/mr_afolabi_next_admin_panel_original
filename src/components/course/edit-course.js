@@ -12,7 +12,7 @@ import {
 import Image from "next/image";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-import { addProgram, editProgram, getPrograms } from "../../features/programSlice";
+import { editCourse, getCourses } from "../../features/courseSlice";
 
 const states = [
   {
@@ -38,13 +38,14 @@ const states = [
 //   };
 // };
 
-export const EditProgram = (props) => {
+export const EditCourse = (props) => {
   // console.log("props :>> ", props);
   const dispatch = useDispatch();
   let router = useRouter();
   const _id = router.query._id;
   const title = router.query.title;
   const description = router.query.description;
+  const code = router.query.code;
 
   // console.log("query :>> ", query);
   console.log("_id :>> ", _id);
@@ -57,6 +58,7 @@ export const EditProgram = (props) => {
   const [values, setValues] = useState({
     title,
     description,
+    code,
     _id,
   });
 
@@ -67,25 +69,26 @@ export const EditProgram = (props) => {
     });
   };
 
-  const [programImage, setProgramImage] = useState("");
-  const handleProgramImage = (e) => {
-    setProgramImage(e.target.files[0]);
-  };
+  // const [programImage, setProgramImage] = useState("");
+  // const handleProgramImage = (e) => {
+  //   setProgramImage(e.target.files[0]);
+  // };
 
-  const handleEditProgram = (e) => {
+  const handleEditCourse = (e) => {
     e.preventDefault();
-    const program = {
+    const course = {
       title: values.title,
       description: values.description,
+      code: values.code,
       _id: values._id,
       // programImage,
     };
     // console.log("newProgram :>> ", newProgram);
-    dispatch(editProgram(program))
+    dispatch(editCourse(course))
       .unwrap()
       .then(() => {
-        dispatch(getPrograms());
-        router.push("/programs");
+        dispatch(getCourses());
+        router.push("/courses");
         // window.location.reload();
       });
   };
@@ -123,6 +126,17 @@ export const EditProgram = (props) => {
               />
             </Grid>
             <Grid item md={12} xs={12}>
+              <TextField
+                fullWidth
+                label="Code"
+                name="code"
+                onChange={handleChange}
+                required
+                value={values.code}
+                variant="standard"
+              />
+            </Grid>
+            {/* <Grid item md={12} xs={12}>
               <Button color="primary" fullWidth component="label">
                 Upload picture
                 <input
@@ -131,13 +145,12 @@ export const EditProgram = (props) => {
                   multiple
                   type="file"
                   name="programImage"
-                  // value={programImage}
+                  value={programImage}
                   onChange={handleProgramImage}
                 />
               </Button>
-              {/* <Image src={programImage} /> */}
               <p>{programImage && programImage.name}</p>
-            </Grid>
+            </Grid> */}
             {/* <Grid item md={6} xs={12}>
               <TextField
                 fullWidth
@@ -200,8 +213,8 @@ export const EditProgram = (props) => {
             p: 2,
           }}
         >
-          <Button color="primary" variant="contained" value="submit" onClick={handleEditProgram}>
-            Edit Program
+          <Button color="primary" variant="contained" value="submit" onClick={handleEditCourse}>
+            Edit Course
           </Button>
         </Box>
       </Card>

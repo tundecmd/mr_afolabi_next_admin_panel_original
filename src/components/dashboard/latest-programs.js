@@ -19,7 +19,7 @@ import Link from "next/link";
 const products = [
   {
     id: uuid(),
-    name: "Beginner",
+    title: "Beginner",
     imageUrl: "/static/images/products/product_1.png",
     updatedAt: subHours(Date.now(), 2),
   },
@@ -49,46 +49,51 @@ const products = [
   // },
 ];
 
-export const LatestPrograms = (props) => (
-  <Card {...props}>
-    <CardHeader subtitle={`${products.length} in total`} title="Programs" />
-    <Divider />
-    <List>
-      {products.map((product, i) => (
-        <ListItem divider={i < products.length - 1} key={product.id}>
-          <ListItemAvatar>
-            <img
-              alt={product.name}
-              src={product.imageUrl}
-              style={{
-                height: 48,
-                width: 48,
-              }}
-            />
-          </ListItemAvatar>
-          <ListItemText
-            primary={product.name}
-            secondary={`Updated ${formatDistanceToNow(product.updatedAt)}`}
-          />
-          <IconButton edge="end" size="small">
-            <MoreVertIcon />
-          </IconButton>
-        </ListItem>
-      ))}
-    </List>
-    <Divider />
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "flex-end",
-        p: 2,
-      }}
-    >
-      <Link href="/programs">
-        <Button color="primary" endIcon={<ArrowRightIcon />} size="small" variant="text">
-          View all
-        </Button>
-      </Link>
-    </Box>
-  </Card>
-);
+export const LatestPrograms = (props) => {
+  const { programs } = props;
+  return (
+    <Card {...props}>
+      <CardHeader subtitle={`${programs?.length} in total`} title="Programs" />
+      <Divider />
+      <List>
+        {programs &&
+          programs.map((program, i) => (
+            <ListItem divider={i < programs?.length - 1} key={program.id}>
+              <ListItemAvatar>
+                {/* <img
+                  alt={program.name}
+                  src={product.imageUrl}
+                  style={{
+                    height: 48,
+                    width: 48,
+                  }}
+                /> */}
+              </ListItemAvatar>
+              <ListItemText
+                primary={program.title}
+                secondary={`Updated ${formatDistanceToNow(program.title)}`}
+                // secondary={`Updated ${formatDistanceToNow(program.updatedAt)}`}
+              />
+              <IconButton edge="end" size="small">
+                <MoreVertIcon />
+              </IconButton>
+            </ListItem>
+          ))}
+      </List>
+      <Divider />
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "flex-end",
+          p: 2,
+        }}
+      >
+        <Link href="/programs">
+          <Button color="primary" endIcon={<ArrowRightIcon />} size="small" variant="text">
+            View all
+          </Button>
+        </Link>
+      </Box>
+    </Card>
+  );
+};

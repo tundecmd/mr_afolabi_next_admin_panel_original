@@ -8,6 +8,7 @@ import {
   SvgIcon,
   Typography,
 } from "@mui/material";
+import Link from "next/link";
 import { Search as SearchIcon } from "../../icons/search";
 import { Upload as UploadIcon } from "../../icons/upload";
 import { Download as DownloadIcon } from "../../icons/download";
@@ -39,9 +40,11 @@ export const StudentListToolbar = (props) => (
         >
           Export
         </Button> */}
-        <Button color="primary" variant="contained">
-          Add Student
-        </Button>
+        <Link href="/students/new">
+          <Button color="primary" variant="contained">
+            Add Student
+          </Button>
+        </Link>
       </Box>
     </Box>
     <Box sx={{ mt: 3 }}>

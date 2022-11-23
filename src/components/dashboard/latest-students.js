@@ -81,66 +81,72 @@ const orders = [
   },
 ];
 
-export const LatestStudents = (props) => (
-  <Card {...props}>
-    <CardHeader title="New Students" />
-    <PerfectScrollbar>
-      <Box sx={{ minWidth: 800 }}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Id</TableCell>
-              <TableCell>Student</TableCell>
-              <TableCell sortDirection="desc">
-                <Tooltip enterDelay={300} title="Sort">
-                  <TableSortLabel active direction="desc">
-                    Join Date
-                  </TableSortLabel>
-                </Tooltip>
-              </TableCell>
-              <TableCell>Level</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {orders.map((order) => (
-              <TableRow hover key={order.id}>
-                <TableCell>{order.ref}</TableCell>
-                <TableCell>{order.customer.name}</TableCell>
-                <TableCell>{format(order.createdAt, "dd/MM/yyyy")}</TableCell>
-                <TableCell>
-                  <SeverityPill
-                    color={
-                      (order.status === "advanced" && "success") ||
-                      (order.status === "beginner" && "error") ||
-                      "warning"
-                    }
-                  >
-                    {order.status}
-                  </SeverityPill>
-                </TableCell>
+export const LatestStudents = (props) => {
+  const { students } = props;
+  console.log("students :>> ", students);
+  return (
+    <Card {...props}>
+      <CardHeader title="Students" />
+      <PerfectScrollbar>
+        <Box sx={{ minWidth: 800 }}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                {/* <TableCell>Id</TableCell> */}
+                <TableCell>FirstName</TableCell>
+                <TableCell>LastName</TableCell>
+                {/* <TableCell sortDirection="desc">
+                  <Tooltip enterDelay={300} title="Sort">
+                    <TableSortLabel active direction="desc">
+                      Join Date
+                    </TableSortLabel>
+                  </Tooltip>
+                </TableCell> */}
+                {/* <TableCell>Level</TableCell> */}
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+            </TableHead>
+            <TableBody>
+              {students?.map((student) => (
+                <TableRow hover key={student._id}>
+                  {/* <TableCell>{student.ref}</TableCell> */}
+                  <TableCell>{student.firstName}</TableCell>
+                  <TableCell>{student.lastName}</TableCell>
+                  {/* <TableCell>{format(student.createdAt, "dd/MM/yyyy")}</TableCell> */}
+                  {/* <TableCell>
+                    <SeverityPill
+                      color={
+                        (student.status === "advanced" && "success") ||
+                        (student.status === "beginner" && "error") ||
+                        "warning"
+                      }
+                    >
+                      {student.status}
+                    </SeverityPill>
+                  </TableCell> */}
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </Box>
+      </PerfectScrollbar>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "flex-end",
+          p: 2,
+        }}
+      >
+        <Link href="/students">
+          <Button
+            color="primary"
+            endIcon={<ArrowRightIcon fontSize="small" />}
+            size="small"
+            variant="text"
+          >
+            View all
+          </Button>
+        </Link>
       </Box>
-    </PerfectScrollbar>
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "flex-end",
-        p: 2,
-      }}
-    >
-      <Link href="/students">
-        <Button
-          color="primary"
-          endIcon={<ArrowRightIcon fontSize="small" />}
-          size="small"
-          variant="text"
-        >
-          View all
-        </Button>
-      </Link>
-    </Box>
-  </Card>
-);
+    </Card>
+  );
+};

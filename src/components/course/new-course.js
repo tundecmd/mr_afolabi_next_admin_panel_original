@@ -12,7 +12,7 @@ import {
 import Image from "next/image";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-import { addProgram, editProgram, getPrograms } from "../../features/programSlice";
+import { addCourse, getCourses } from "../../features/courseSlice";
 
 const states = [
   {
@@ -29,35 +29,13 @@ const states = [
   },
 ];
 
-// export const getServerSideProps = (context) => {
-//   console.log(context.query);
-//   return {
-//     props: {
-//       _id: context.query._id, //pass it to the page props
-//     },
-//   };
-// };
-
-export const EditProgram = (props) => {
-  // console.log("props :>> ", props);
+export const NewCourse = (props) => {
   const dispatch = useDispatch();
   let router = useRouter();
-  const _id = router.query._id;
-  const title = router.query.title;
-  const description = router.query.description;
-
-  // console.log("query :>> ", query);
-  console.log("_id :>> ", _id);
-  console.log("title :>> ", title);
-  console.log("description :>> ", description);
-
-  // const [id, setId] = useState(_id);
-  // const [titleEdit, setTitleEdit] = useState(title);
-  // const [descriptionEdit, setDescriptionEdit] = useState(description);
   const [values, setValues] = useState({
-    title,
-    description,
-    _id,
+    title: "",
+    description: "",
+    code: "",
   });
 
   const handleChange = (event) => {
@@ -67,25 +45,24 @@ export const EditProgram = (props) => {
     });
   };
 
-  const [programImage, setProgramImage] = useState("");
-  const handleProgramImage = (e) => {
-    setProgramImage(e.target.files[0]);
-  };
+  // const [programImage, setProgramImage] = useState("");
+  // const handleProgramImage = (e) => {
+  //   setProgramImage(e.target.files[0]);
+  // };
 
-  const handleEditProgram = (e) => {
+  const handleAddCourse = (e) => {
     e.preventDefault();
-    const program = {
+    const newCourse = {
       title: values.title,
       description: values.description,
-      _id: values._id,
-      // programImage,
+      code: values.code,
     };
-    // console.log("newProgram :>> ", newProgram);
-    dispatch(editProgram(program))
+    console.log("newCourse :>> ", newCourse);
+    dispatch(addCourse(newCourse))
       .unwrap()
       .then(() => {
-        dispatch(getPrograms());
-        router.push("/programs");
+        dispatch(getCourses());
+        router.push("/courses");
         // window.location.reload();
       });
   };
@@ -93,7 +70,7 @@ export const EditProgram = (props) => {
   return (
     <form autoComplete="off" noValidate {...props}>
       <Card>
-        <CardHeader subheader="" title="Edit Program" sx={{ color: "primary.main" }} />
+        <CardHeader subheader="" title="New Course" sx={{ color: "primary.main" }} />
         <Divider />
         <CardContent>
           <Grid container spacing={3}>
@@ -119,10 +96,21 @@ export const EditProgram = (props) => {
                 value={values.description}
                 variant="standard"
                 multiline
-                rows={8}
+                rows={5}
               />
             </Grid>
             <Grid item md={12} xs={12}>
+              <TextField
+                fullWidth
+                label="Code"
+                name="code"
+                onChange={handleChange}
+                required
+                value={values.code}
+                variant="standard"
+              />
+            </Grid>
+            {/* <Grid item md={12} xs={12}>
               <Button color="primary" fullWidth component="label">
                 Upload picture
                 <input
@@ -131,13 +119,11 @@ export const EditProgram = (props) => {
                   multiple
                   type="file"
                   name="programImage"
-                  // value={programImage}
                   onChange={handleProgramImage}
                 />
               </Button>
-              {/* <Image src={programImage} /> */}
               <p>{programImage && programImage.name}</p>
-            </Grid>
+            </Grid> */}
             {/* <Grid item md={6} xs={12}>
               <TextField
                 fullWidth
@@ -200,8 +186,8 @@ export const EditProgram = (props) => {
             p: 2,
           }}
         >
-          <Button color="primary" variant="contained" value="submit" onClick={handleEditProgram}>
-            Edit Program
+          <Button color="primary" variant="contained" value="submit" onClick={handleAddCourse}>
+            Add Course
           </Button>
         </Box>
       </Card>
