@@ -56,11 +56,10 @@ export const LatestPrograms = (props) => {
       <CardHeader subtitle={`${programs?.length} in total`} title="Programs" />
       <Divider />
       <List>
-        {programs &&
-          programs.map((program, i) => (
-            <ListItem divider={i < programs?.length - 1} key={program.id}>
-              <ListItemAvatar>
-                {/* <img
+        {programs?.map((program, i) => (
+          <ListItem divider={i < programs?.length - 1} key={program.id}>
+            <ListItemAvatar>
+              {/* <img
                   alt={program.name}
                   src={product.imageUrl}
                   style={{
@@ -68,17 +67,17 @@ export const LatestPrograms = (props) => {
                     width: 48,
                   }}
                 /> */}
-              </ListItemAvatar>
-              <ListItemText
-                primary={program.title}
-                secondary={`Updated ${formatDistanceToNow(program.title)}`}
-                // secondary={`Updated ${formatDistanceToNow(program.updatedAt)}`}
-              />
-              <IconButton edge="end" size="small">
-                <MoreVertIcon />
-              </IconButton>
-            </ListItem>
-          ))}
+            </ListItemAvatar>
+            <ListItemText
+              primary={program.title}
+              // secondary={`${program.title}`}
+              // secondary={`Updated ${formatDistanceToNow(program.updatedAt)}`}
+            />
+            <IconButton edge="end" size="small">
+              <MoreVertIcon />
+            </IconButton>
+          </ListItem>
+        ))}
       </List>
       <Divider />
       <Box

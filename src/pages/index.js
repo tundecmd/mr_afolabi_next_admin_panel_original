@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getStudents } from "../features/studentSlice";
 import { getCourses } from "../features/courseSlice";
+import { getBanner } from "../features/bannerSlice";
 
 const Page = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ const Page = () => {
     dispatch(getPrograms());
     dispatch(getStudents());
     dispatch(getCourses());
+    dispatch(getBanner());
   }, []);
 
   const { courses } = useSelector((state) => state.course);
@@ -61,10 +63,10 @@ const Page = () => {
               {/* <TrafficByDevice sx={{ height: '100%' }} /> */}
             </Grid>
             <Grid item lg={4} md={6} xl={3} xs={12}>
-              <LatestPrograms sx={{ height: "100%" }} />
+              <LatestPrograms sx={{ height: "100%" }} programs={programs} />
             </Grid>
             <Grid item lg={8} md={12} xl={9} xs={12}>
-              <LatestStudents />
+              <LatestStudents students={students} />
             </Grid>
           </Grid>
         </Container>

@@ -37,31 +37,31 @@ const items = [
     icon: <ShoppingBagIcon fontSize="small" />,
     title: "Courses",
   },
-  {
-    href: "/account",
-    icon: <UserIcon fontSize="small" />,
-    title: "Account",
-  },
+  // {
+  //   href: "/account",
+  //   icon: <UserIcon fontSize="small" />,
+  //   title: "Account",
+  // },
   {
     href: "/settings",
     icon: <CogIcon fontSize="small" />,
     title: "Settings",
   },
-  {
-    href: "/login",
-    icon: <LockIcon fontSize="small" />,
-    title: "Login",
-  },
-  {
-    href: "/register",
-    icon: <UserAddIcon fontSize="small" />,
-    title: "Register",
-  },
-  {
-    href: "/404",
-    icon: <XCircleIcon fontSize="small" />,
-    title: "Error",
-  },
+  // {
+  //   href: "/login",
+  //   icon: <LockIcon fontSize="small" />,
+  //   title: "Login",
+  // },
+  // {
+  //   href: "/register",
+  //   icon: <UserAddIcon fontSize="small" />,
+  //   title: "Register",
+  // },
+  // {
+  //   href: "/404",
+  //   icon: <XCircleIcon fontSize="small" />,
+  //   title: "Error",
+  // },
 ];
 
 export const DashboardSidebar = (props) => {
@@ -169,7 +169,7 @@ export const DashboardSidebar = (props) => {
           >
             <img alt="Go to pro" src="/static/images/paperback.jpg" />
           </Box> */}
-          <NextLink href="https://material-kit-pro-react.devias.io/" passHref>
+          <a href="/login">
             <Button
               // color="primary.main"
               component="a"
@@ -180,7 +180,7 @@ export const DashboardSidebar = (props) => {
             >
               Logout
             </Button>
-          </NextLink>
+          </a>
         </Box>
       </Box>
     </>
