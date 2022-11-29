@@ -16,7 +16,7 @@ const getBanner = () => {
 
 const editBanner = (banner) => {
   // console.log("newProgram :>> ", newProgram);
-  return axios.put(API_URL + "admin/banner/" + banner._id, { banner }).then((res) => {
+  return axios.put(API_URL + "admin/banner/", { banner }).then((res) => {
     console.log("res :>> ", res);
     if (res.status === 200) {
       return res;

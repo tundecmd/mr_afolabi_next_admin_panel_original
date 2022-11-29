@@ -86,6 +86,8 @@ export const AboutCard = ({ about, ...rest }) => {
       });
   };
 
+  about = about && about[0]
+
   return (
     <Card
       sx={{
@@ -111,10 +113,12 @@ export const AboutCard = ({ about, ...rest }) => {
           {/* <Avatar {...stringAvatar(`${banner.title[0]}`)} /> */}
         </Box>
         <Typography align="center" color="textPrimary" gutterBottom variant="h5">
-          {about && about[0]?.title}
+          {/* {about && about[0]?.title} */}
+          {about?.title}
         </Typography>
         <Typography align="center" color="textPrimary" variant="body1">
-          {about && about[0]?.description}
+          {/* {about && about[0]?.description} */}
+        {about?.description}
         </Typography>
       </CardContent>
       <Box sx={{ flexGrow: 1 }} />
@@ -134,9 +138,9 @@ export const AboutCard = ({ about, ...rest }) => {
                 href={{
                   pathname: "/settings/edit-about",
                   query: {
-                    _id: about[0]?._id,
-                    // title: banner.title,
-                    // description: banner.description,
+                    _id: about?._id,
+                    title: about?.title,
+                    description: about?.description,
                   },
                   shallow: true,
                 }}

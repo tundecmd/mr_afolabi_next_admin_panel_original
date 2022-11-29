@@ -86,6 +86,8 @@ export const BannerCard = ({ banner, ...rest }) => {
       });
   };
 
+  banner = banner && banner[0]
+
   return (
     <Card
       sx={{
@@ -111,10 +113,12 @@ export const BannerCard = ({ banner, ...rest }) => {
           {/* <Avatar {...stringAvatar(`${banner.title[0]}`)} /> */}
         </Box>
         <Typography align="center" color="textPrimary" gutterBottom variant="h5">
-          {banner && banner[0]?.title}
+          {/* {banner && banner[0]?.title} */}
+       { banner?.title}
         </Typography>
         <Typography align="center" color="textPrimary" variant="body1">
-          {banner && banner[0]?.description}
+          {/* {banner && banner[0]?.description} */}
+          {banner?.description}
         </Typography>
       </CardContent>
       <Box sx={{ flexGrow: 1 }} />
@@ -133,12 +137,12 @@ export const BannerCard = ({ banner, ...rest }) => {
                 // onClick={handleTransferProgram}
                 href={{
                   pathname: "settings/edit-banner",
-                  // query: {
-                  //   _id: banner._id,
-                  //   title: banner.title,
-                  //   description: banner.description,
-                  // },
-                  shallow: true,
+                  query: {
+                    _id: banner?._id,
+                    title: banner?.title,
+                    description: banner?.description,
+                  },
+                
                 }}
               >
                 <EditIcon color="primary.main" />

@@ -15,6 +15,7 @@ import { useRouter } from "next/router";
 import { addProgram, editProgram, getPrograms } from "../../features/programSlice";
 import { getBanner } from "../../features/bannerSlice";
 import axios from "axios";
+import { editAbout, getAbout } from "../../features/aboutSlice";
 
 const states = [
   {
@@ -81,17 +82,17 @@ export const EditAbout = (props) => {
 
   const handleEditBanner = (e) => {
     e.preventDefault();
-    const banner = {
+    const about = {
       title: values.title,
       description: values.description,
       _id: values._id,
       // programImage,
     };
     // console.log("newProgram :>> ", newProgram);
-    dispatch(editBanner(banner))
+    dispatch(editAbout(about))
       .unwrap()
       .then(() => {
-        dispatch(getBanner());
+        dispatch(getAbout());
         router.push("/settings");
         // window.location.reload();
       });

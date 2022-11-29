@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { Box, Container, Grid, Pagination } from "@mui/material";
 // import { products } from "../../__mocks__/products";
-import { ProductListToolbar } from "../../components/program/program-list-toolbar";
+import { SettingsListToolbar } from "../../components/settings/settings-list-toolbar";
 // import { ProgramCard } from "../../components/program/program-card";
 import { DashboardLayout } from "../../components/dashboard-layout";
 import { useDispatch, useSelector } from "react-redux";
@@ -41,7 +41,7 @@ const Page = () => {
         }}
       >
         <Container maxWidth={false}>
-          <ProductListToolbar />
+          <SettingsListToolbar />
           <Box sx={{ pt: 3 }}>
             <Grid container spacing={3}>
               {/* {programs &&

@@ -27,7 +27,7 @@ const getAbout = () => {
 
 const editAbout = (about) => {
   // console.log("newProgram :>> ", newProgram);
-  return axios.put(API_URL + "admin/about/" + about._id, { about }).then((res) => {
+  return axios.put(API_URL + "admin/about/", { about }).then((res) => {
     console.log("res :>> ", res);
     if (res.status === 200) {
       return res;

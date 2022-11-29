@@ -13,7 +13,7 @@ import Image from "next/image";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { addProgram, editProgram, getPrograms } from "../../features/programSlice";
-import { getBanner } from "../../features/bannerSlice";
+import { editBanner, getBanner } from "../../features/bannerSlice";
 
 const states = [
   {
